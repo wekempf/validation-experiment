@@ -22,4 +22,8 @@
   (let [group (subs (digits ssn) 3 5)]
     (not= group "00")))
 
-(s/def ::ssn (s/and valid-format? valid-area? valid-group?))
+(defn- valid-serial-number? [ssn]
+  (let [serial-number (subs (digits ssn) 5 9)]
+    (not= serial-number "0000")))
+
+(s/def ::ssn (s/and string? valid-format? valid-area? valid-group? valid-serial-number?))
