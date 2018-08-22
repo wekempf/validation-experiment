@@ -1,7 +1,8 @@
 (ns validation-experiment.ssn
   (:require [clojure.spec.alpha :as s]
             [clojure.string :as string]
-            [phrase.alpha :refer [defphraser]]))
+            [phrase.alpha :refer [defphraser]]
+            [validation-experiment.i18n :refer [tr]]))
 
 (defn- valid-format? [ssn]
   (boolean (re-matches #"\d{9}|\d{3}-\d{2}-\d{4}" ssn)))
@@ -31,16 +32,16 @@
 
 (defphraser valid-format?
   [_ _]
-  "Not a valid SSN format.")
+  (tr [:ssn/invalid-format "Not a valid SSN format."]))
 
 (defphraser valid-area?
   [_ {:keys [val]}]
-  (str "\"" (subs val 0 3) "\" is not a valid area segment."))
+  (tr [:ssn/invalid-area (fn [[v]] (str "\"" v "\" is not a valid area segment."))] [(subs val 0 3)]))
 
 (defphraser valid-group?
   [_ {:keys [val]}]
-  (str "\"" (subs (digits val) 3 5) "\" is not a valid group segment."))
+  (tr [:ssn/invalid-group (fn [[v]] (str "\"" v "\" is not a valid group segment."))] [(subs (digits val) 3 5)]))
 
 (defphraser valid-serial-number?
   [_ {:keys [val]}]
-  (str "\"" (subs (digits val) 5 9) "\" is not a valid serial number."))
+  (tr [:ssn/invalid-serial-number (fn [[v]] (str "\"" v "\" is not a valid serial number."))] [(subs (digits val) 5 9)]))

@@ -18,7 +18,8 @@
                  [secretary "1.2.3"]
                  [venantius/accountant "0.2.4"
                   :exclusions [org.clojure/tools.reader]]
-                 [phrase "0.3-alpha4"]]
+                 [phrase "0.3-alpha4"]
+                 [com.taoensso/tempura "1.2.1"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
