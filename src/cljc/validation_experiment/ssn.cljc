@@ -36,12 +36,12 @@
 
 (defphraser valid-area?
   [_ {:keys [val]}]
-  (tr [:ssn/invalid-area (fn [[v]] (str "\"" v "\" is not a valid area segment."))] [(subs val 0 3)]))
+  (tr [:ssn/invalid-area "\"%1\" is not a valid area segment."] [(subs val 0 3)]))
 
 (defphraser valid-group?
   [_ {:keys [val]}]
-  (tr [:ssn/invalid-group (fn [[v]] (str "\"" v "\" is not a valid group segment."))] [(subs (digits val) 3 5)]))
+  (tr [:ssn/invalid-group "\"%1\" is not a valid group segment."] [(subs (digits val) 3 5)]))
 
 (defphraser valid-serial-number?
   [_ {:keys [val]}]
-  (tr [:ssn/invalid-serial-number (fn [[v]] (str "\"" v "\" is not a valid serial number."))] [(subs (digits val) 5 9)]))
+  (tr [:ssn/invalid-serial-number "\"%1\" is not a valid serial number."] [(subs (digits val) 5 9)]))
