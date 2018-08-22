@@ -17,7 +17,8 @@
                   :scope "provided"]
                  [secretary "1.2.3"]
                  [venantius/accountant "0.2.4"
-                  :exclusions [org.clojure/tools.reader]]]
+                  :exclusions [org.clojure/tools.reader]]
+                 [phrase "0.3-alpha4"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
@@ -69,20 +70,15 @@
                         :output-to "target/test.js"
                         :output-dir "target/cljstest/public/js/out"
                         :optimizations :whitespace
-                        :pretty-print true}}
-
-
-            }
-   }
-   :doo {:build "test"
-         :alias {:default [:chrome]}}
+                        :pretty-print true}}}}
+  :doo {:build "test"
+        :alias {:default [:chrome]}}
 
   :figwheel
   {:http-server-root "public"
    :server-port 3449
    :nrepl-port 7002
-   :nrepl-middleware [cider.piggieback/wrap-cljs-repl
-                      ]
+   :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
    :css-dirs ["resources/public/css"]
    :ring-handler validation-experiment.handler/app}
 
@@ -97,14 +93,11 @@
                                   [figwheel-sidecar "0.5.16"]
                                   [nrepl "0.4.4"]
                                   [cider/piggieback "0.3.8"]
-                                  [pjstadig/humane-test-output "0.8.3"]
-                                  
- ]
+                                  [pjstadig/humane-test-output "0.8.3"]]
 
                    :source-paths ["env/dev/clj"]
                    :plugins [[lein-figwheel "0.5.16"]
-                             [lein-doo "0.1.10"]
-]
+                             [lein-doo "0.1.10"]]
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]
